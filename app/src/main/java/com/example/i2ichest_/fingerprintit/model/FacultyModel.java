@@ -1,5 +1,5 @@
 package com.example.i2ichest_.fingerprintit.model;
-/////5555555555555555
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.Serializable;
