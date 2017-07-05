@@ -3,7 +3,7 @@ package com.example.i2ichest_.fingerprintit.model;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class ParentModel {
+public class ParentModel extends PersonModel{
     private Parent parent;
     Gson gson = new GsonBuilder().create();
 
@@ -24,15 +24,15 @@ public class ParentModel {
     }
 
 
-    public class Parent extends PersonModel {
+    public class Parent extends Person {
         private String phoneNo;
         private String email;
 
         public Parent() {
         }
 
-        public Parent(String phoneNo, String email) {
-
+        public Parent(String phoneNo, String email,Long personID, String title, String firstName, String lastName,String fingerprintData) {
+            super(personID,title, firstName, lastName, fingerprintData);
             this.phoneNo = phoneNo;
             this.email = email;
         }
