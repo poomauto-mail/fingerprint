@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.i2ichest_.fingerprintit.manager.WSManager;
@@ -19,6 +20,14 @@ public class VerifyStudentParentActivity extends AppCompatActivity {
     }
 
     public void getPersonData(View view){
+        EditText name = (EditText)findViewById(R.id.nametxt);
+        EditText studenId = (EditText)findViewById(R.id.studentId);
+        EditText phone = (EditText)findViewById(R.id.phone);
+        EditText email = (EditText)findViewById(R.id.email);
+
+
+
+
         final ProgressDialog progress = ProgressDialog.show(VerifyStudentParentActivity.this,"Please Wait...","Please wait...",true);
         WSManager manager = WSManager.getWsManager(this);
         PersonModel personmodel = new PersonModel();
