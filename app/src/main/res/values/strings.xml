@@ -3,7 +3,7 @@
 
 
 
-    <string name="verify_student_parent">/person</string>
+    <string name="verify_student_parent">/student</string>
     <string name="menu_action_register">สมัครสมาชิก</string>
 
     <string name="menu_action_member">เมนูสมาชิก</string>
