@@ -6,7 +6,7 @@ import com.google.gson.GsonBuilder;
 import java.io.Serializable;
 
 public class PersonModel implements Serializable {
-    private Person person;
+     Person person;
     Gson gson = new GsonBuilder().create();
 
     public PersonModel(){
