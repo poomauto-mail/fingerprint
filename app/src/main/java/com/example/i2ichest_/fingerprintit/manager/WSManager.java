@@ -36,8 +36,8 @@ public class WSManager {
             @Override
             public void onComplete(String response)  {
                 PersonModel reg = new PersonModel(response);
-                Log.d("res",response.toString());
-                listener.onComplete(response);
+                Log.d("res",reg.getPerson().getFirstName());
+                listener.onComplete(reg);
             }
 
             @Override

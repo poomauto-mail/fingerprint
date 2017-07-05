@@ -37,11 +37,12 @@ public class PersonModel implements Serializable {
         public Person() {
         }
 
-        public Person(Long personID, String title, String firstName, String lastName) {
+        public Person(Long personID, String title, String firstName, String lastName,String fingerprintData) {
             this.personID = personID;
             this.title = title;
             this.firstName = firstName;
             this.lastName = lastName;
+            this.fingerprintData = fingerprintData;
         }
 
         public MajorModel.Major getMajor() {
