@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by MSI on 5/7/2560.
@@ -35,6 +36,8 @@ public class SectionModel implements Serializable {
         private int sectionNumber;
         private int semester;
         SubjectModel.Subject subject;
+        List<PeriodModel.Period> periodList;
+        TeacherModel.Teacher teacher;
 
         public Section(){}
 
@@ -48,6 +51,22 @@ public class SectionModel implements Serializable {
 
         public SubjectModel.Subject getSubject() {
             return subject;
+        }
+
+        public List<PeriodModel.Period> getPeriodList() {
+            return periodList;
+        }
+
+        public void setPeriodList(List<PeriodModel.Period> periodList) {
+            this.periodList = periodList;
+        }
+
+        public TeacherModel.Teacher getTeacher() {
+            return teacher;
+        }
+
+        public void setTeacher(TeacherModel.Teacher teacher) {
+            this.teacher = teacher;
         }
 
         public void setSubject(SubjectModel.Subject subject) {
