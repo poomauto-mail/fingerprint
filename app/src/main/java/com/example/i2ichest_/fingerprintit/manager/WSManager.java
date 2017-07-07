@@ -8,6 +8,10 @@ import com.example.i2ichest_.fingerprintit.model.StudentModel;
 import com.example.i2ichest_.fingerprintit.task.WSTask;
 import com.example.i2ichest_.fingerprintit.task.WSTaskPost;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class WSManager {
     private static WSManager wsManager;
     private Context context;
@@ -32,15 +36,21 @@ public class WSManager {
             return;
         }
         StudentModel studentModel = (StudentModel)object;
-        studentModel.toJSONString();
-
-
         WSTaskPost task = new WSTaskPost(this.context, new WSTaskPost.WSTaskListener() {
             @Override
             public void onComplete(String response) {
-                Log.d("oncomplete ",response.toString());
-//                StudentModel studentModel = new StudentModel(response);
-                listener.onComplete(response);
+                try {
+                    JSONObject job = new JSONObject(response.toString());
+                    job.remove("fingerprintData");
+                    Log.d("oncomplete ",job.toString());
+                    StudentModel studentModel = new StudentModel(job.toString());
+                    listener.onComplete(studentModel);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
             }
 
             @Override
@@ -49,7 +59,7 @@ public class WSManager {
             }
         });
 
-        task.execute(context.getString(R.string.verify_student_parent),studentModel.toString());
+        task.execute(context.getString(R.string.verify_student_parent),studentModel.toJSONString());
 
     }
 
