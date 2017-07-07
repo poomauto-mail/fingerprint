@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 
 public class StudentModel extends PersonModel{
     private Student student;
+    String resultCheck = "";
     Gson gson = new GsonBuilder().create();
 
     public StudentModel(){
@@ -28,7 +29,7 @@ public class StudentModel extends PersonModel{
 
     public class Student extends Person{
         private Long studentID;
-        private String encode;
+        private String  encode;
         private String parentPhone;
 
         public Student() {
@@ -63,6 +64,17 @@ public class StudentModel extends PersonModel{
 
         public void setParentPhone(String parentPhone) {
             this.parentPhone = parentPhone;
+        }
+
+        public String checkStudentIdAndPhone(String inputPhone,String databasePhone){
+            if(databasePhone == null){
+                databasePhone = "";
+            }
+            if(!databasePhone.equalsIgnoreCase(inputPhone) ){
+                resultCheck = "เบอร์โทรศัพท์ไม่ตรงตามฐานข้อมูล";
+            }
+
+            return resultCheck;
         }
     }
 
