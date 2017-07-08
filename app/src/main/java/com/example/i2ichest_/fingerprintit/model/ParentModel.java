@@ -15,7 +15,7 @@ public class ParentModel extends PersonModel{
         parent = gson.fromJson(jsonResponse,Parent.class);
     }
 
-    public Parent getPerson(){
+    public Parent getParent(){
         return parent;
     }
 

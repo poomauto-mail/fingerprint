@@ -82,8 +82,8 @@ public class WSManager {
         WSTaskPost task = new WSTaskPost(this.context, new WSTaskPost.WSTaskListener() {
             @Override
             public void onComplete(String response) {
-                Log.d("response verifyParent ",parentModel.toJSONString());
-
+                Log.d("response verifyParent ",response);
+                listener.onComplete(response);
             }
 
             @Override

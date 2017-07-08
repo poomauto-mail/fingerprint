@@ -59,14 +59,17 @@ public class VerifyStudentParentActivity extends AppCompatActivity {
                         if (resultCheck == "") {
                             parentModel = new ParentModel();
                             splitName = name.getText().toString().split(" ");
-                            parentModel.getPerson().setFirstName(splitName[0]);
-                            parentModel.getPerson().setLastName(splitName[1]);
-                            parentModel.getPerson().setPhoneNo(inputPhone);
-                            parentModel.getPerson().setEmail(email.getText().toString());
+                            parentModel.getParent().setFirstName(splitName[0]);
+                            parentModel.getParent().setLastName(splitName[1]);
+                            parentModel.getParent().setPhoneNo(inputPhone);
+                            parentModel.getParent().setEmail(email.getText().toString());
                             manager.verifyParent(parentModel, new WSManager.WSManagerListener() {
                                 @Override
                                 public void onComplete(Object response) {
-
+                                        Log.d("result ",response.toString());
+                                    if("duplicate".equals(response.toString())){
+                                        result.setText("รหัสนักศึกษานี้ได้มีการลงทะเบียนแล้ว");
+                                    }
                                 }
 
                                 @Override
