@@ -4,7 +4,7 @@
 
 
     <string name="verify_student_parent">/student</string>
-    <string name="menu_action_register">สมัครสมาชิก</string>
+    <string name="verifyParent">/verifyparent</string>
 
     <string name="menu_action_member">เมนูสมาชิก</string>
     <string name="menu_action_profile">โปรไฟล์</string>

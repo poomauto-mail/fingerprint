@@ -9,7 +9,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.i2ichest_.fingerprintit.manager.WSManager;
+import com.example.i2ichest_.fingerprintit.model.ParentModel;
 import com.example.i2ichest_.fingerprintit.model.StudentModel;
+import com.example.i2ichest_.fingerprintit.task.WSTaskPost;
 
 public class VerifyStudentParentActivity extends AppCompatActivity {
     String splitName[];
@@ -20,7 +22,11 @@ public class VerifyStudentParentActivity extends AppCompatActivity {
     EditText email;
     WSManager manager;
     TextView result;
-
+    String inputPhone;
+    String databasePhone;
+    String resultCheck;
+    ParentModel parentModel;
+    WSTaskPost wsPost;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,12 +48,38 @@ public class VerifyStudentParentActivity extends AppCompatActivity {
             @Override
             public void onComplete(Object response) {
                 progress.dismiss();
-                if(response.toString()!=null){
-                    studentModelResponse = (StudentModel)response;
-                    //Log.d("student response ",studentModelResponse.getStudent().getParentPhone());
+
                     result = (TextView) findViewById(R.id.result);
-                    result.setText(studentModel.getStudent().checkStudentIdAndPhone(phone.getText().toString(),studentModelResponse.getStudent().getParentPhone()));
-                }
+                    if(!response.toString().equalsIgnoreCase("student not found")) {
+                        studentModelResponse = (StudentModel)response;
+                        inputPhone = phone.getText().toString();
+                        databasePhone = studentModelResponse.getStudent().getParentPhone();
+                        resultCheck = studentModelResponse.getStudent().checkStudentIdAndPhone(inputPhone, databasePhone);
+                        result.setText(resultCheck);
+                        if (resultCheck == "") {
+                            parentModel = new ParentModel();
+                            splitName = name.getText().toString().split(" ");
+                            parentModel.getPerson().setFirstName(splitName[0]);
+                            parentModel.getPerson().setLastName(splitName[1]);
+                            parentModel.getPerson().setPhoneNo(inputPhone);
+                            parentModel.getPerson().setEmail(email.getText().toString());
+                            manager.verifyParent(parentModel, new WSManager.WSManagerListener() {
+                                @Override
+                                public void onComplete(Object response) {
+
+                                }
+
+                                @Override
+                                public void onError(String error) {
+
+                                }
+                            });
+
+                        }
+                    }else{
+                        result.setText("Student not found");
+                    }
+
 
 
 
